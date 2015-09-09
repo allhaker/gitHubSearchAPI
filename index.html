@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="exercise">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Autodia</title>
-  <script type="text/javascript" src="bower_components/requirejs/require.js" data-main="main"></script>
+  <script type="text/javascript" src="bower_components/angular/angular.min.js" data-main="main"></script>
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js" data-main="main"></script>
+  <script type="text/javascript" src="app.js" data-main="main"></script>
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body id="my-body" data-spy="scroll" data-target=".navbar" data-offset="400">
-
+<body style="text-align:center">
+  <div class="container" id="title">
+    <h1>Github Search API</h1>
+    <p class="lead">This is where I use Github API to display search results along Github repositories</p>
+  </div>
 </body>
 
 </html>
