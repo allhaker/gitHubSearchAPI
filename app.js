@@ -1,3 +1,8 @@
+(function() {
+    var app = angular.module('exercise',['exercise']);
+
+})();
+
 /*
     # Endpoint
     https://api.github.com/legacy/repos/search/{query}
