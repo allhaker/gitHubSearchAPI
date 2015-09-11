@@ -7,6 +7,7 @@
   <title>Autodia</title>
   <script type="text/javascript" src="bower_components/angular/angular.min.js" data-main="main"></script>
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js" data-main="main"></script>
+  <script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script type="text/javascript" src="app.js" data-main="main"></script>
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -26,7 +27,7 @@
         <input type="text" class="form-control" placeholder="Search for..." ng-model="query">
       </div>
     </form>
-    <div style="border:1px solid black; margin: 20px auto 0 auto; border-radius: 50px; padding:20px" ng-repeat="repo in repos">
+    <div style="border:1px solid #337ab7; margin: 20px auto 0 auto; border-radius: 50px; padding:20px" ng-repeat="repo in repos.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
       <div style="text-decoration:strong">
         Owner:
         <code>{{ repo.owner.login}}</code>
@@ -36,6 +37,7 @@
         <code>{{ repo.name }}</code>
       </div>
     </div>
+    <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
   </div>
 </body>
 
