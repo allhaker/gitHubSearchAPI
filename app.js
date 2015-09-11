@@ -1,43 +1,32 @@
 (function() {
-    var app = angular.module('exercise',['exercise']);
+  var app = angular.module('exercise', ['exercise']);
+
+  app.factory('GitHub', function GitHub($http) {
+    return {
+      searchRepos: function searchRepos(query, callback) {
+        $http.get('https://api.github.com/search/repositories', {
+            params: {
+              q: query
+            }
+          })
+          .success(function(data) {
+            callback(null, data);
+          })
+          .error(function(e) {
+            callback(e);
+          });
+      }
+    };
+  });
+
+  app.controller('mainController', function mainController($scope, GitHub) {
+    $scope.executeSearch = function() {
+      GitHub.searchRepos($scope.query, function (error, data) {
+        if (!error) {
+          $scope.repos = data.items;
+        }
+      });
+    }
+  });
 
 })();
-
-/*
-    # Endpoint
-    https://api.github.com/legacy/repos/search/{query}
-
-    Note: Github imposes a rate limit of 60 request per minute for unauthenticated users.
-
-    Documentation can be found at http://developer.github.com/v3/.
-
-    # Example Response JSON #
-
-    {
-      "meta": {...},
-      "data": {
-        "repositories": [
-          {
-            "type": string,
-            "watchers": number,
-            "followers": number,
-            "username": string,
-            "owner": string,
-            "created": string,
-            "created_at": string,
-            "pushed_at": string,
-            "description": string,
-            "forks": number,
-            "pushed": string,
-            "fork": boolean,
-            "size": number,
-            "name": string,
-            "private": boolean,
-            "language": number
-          },
-          {...},
-          {...}
-        ]
-      }
-    }
-*/

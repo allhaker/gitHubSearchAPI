@@ -11,10 +11,31 @@
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body style="text-align:center">
+<body style="text-align:center" ng-controller="mainController">
   <div class="container" id="title">
     <h1>Github Search API</h1>
-    <p class="lead">This is where I use Github API to display search results along Github repositories</p>
+    <p class="lead">This is where I use Github API to display search results among Github repositories</p>
+    <hr>
+  </div>
+  <div class="container" style="max-width:700px; margin: 0 auto 0 auto">
+    <form ng-submit="executeSearch()">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">Go!</button>
+        </span>
+        <input type="text" class="form-control" placeholder="Search for..." ng-model="query">
+      </div>
+    </form>
+    <div style="border:1px solid black; margin: 20px auto 0 auto; border-radius: 50px; padding:20px" ng-repeat="repo in repos">
+      <div style="text-decoration:strong">
+        Owner:
+        <code>{{ repo.owner.login}}</code>
+      </div>
+      <div style="text-decoration:strong">
+        Repository:
+        <code>{{ repo.name }}</code>
+      </div>
+    </div>
   </div>
 </body>
 
